@@ -1,5 +1,18 @@
-import React from 'react';
-
 export const Login = () => {
-  return <div>Login</div>;
+  return (
+    <>
+      <section>
+        <div>
+          <form>
+            <div>
+              <label htmlFor="email">Teste</label>
+              <input type="text" name="email" id="email" />
+              <label htmlFor="email">Teste</label>
+              <input type="text" name="email" id="email" />
+            </div>
+          </form>
+        </div>
+      </section>
+    </>
+  );
 };
