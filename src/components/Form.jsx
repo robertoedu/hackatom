@@ -1,8 +1,10 @@
-import { useFormik } from 'formik';
-import React, { useState } from 'react';
+// componentes
 import { Button } from './Button';
 import { Input } from './Input';
 import { registerSchema } from './schema/Register';
+// utilitários
+import { useFormik } from 'formik';
+import { useState } from 'react';
 
 export const Form = () => {
   const [showErrors, setShowErrors] = useState(false);
