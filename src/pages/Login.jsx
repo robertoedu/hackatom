@@ -1,16 +1,14 @@
 // styles
 import styles from '../styles/Login.module.scss';
 // components
-import { CampoForm } from '../components/CampoForm';
 import { useState } from 'react';
+import { Form } from '../components/Form';
 
 export const Login = () => {
   return (
     <>
       <section>
-        <div className={styles.bgCampos}>
-          <CampoForm />
-        </div>
+        <Form />
       </section>
     </>
   );
