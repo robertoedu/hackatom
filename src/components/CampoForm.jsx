@@ -1,12 +1,40 @@
+// styles
 import styles from '../styles/CampoForm.module.scss';
+// utilities
+import { Formik } from 'formik';
 
-export const CampoForm = ({ nameEmail, nameCPF, typeEmail, typeCPF }) => {
+export const CampoForm = () => {
   return (
-    <div className={styles.bgCampos}>
-      <label htmlFor={typeEmail}>{nameEmail}</label>
-      <input type="text" name={typeEmail} id={typeEmail} />
-      <label htmlFor={typeCPF}>{nameCPF}</label>
-      <input type="text" name={typeCPF} id={typeCPF} />
-    </div>
+    <>
+      <Formik
+        initialValues={{
+          email: '',
+          cpf: '',
+        }}
+      >
+        {({values, handleChange}) => (
+        <form>
+          <div>
+            <label>Email</label>
+            <input
+              name="email"
+              type="text"
+              value={values.email}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label>CPF</label>
+            <input
+              name="cpf"
+              type="text"
+              value={values.cpf}
+              onChange={handleChange}
+            />
+          </div>
+        </form>}
+        )
+      </Formik>
+    </>
   );
 };

@@ -1,19 +1,15 @@
+// styles
+import styles from '../styles/Login.module.scss';
+// components
 import { CampoForm } from '../components/CampoForm';
+import { useState } from 'react';
 
 export const Login = () => {
   return (
     <>
       <section>
-        <div>
-          <form>
-            <CampoForm
-              nameEmail="E-mail: "
-              nameCPF="CPF: "
-              typeEmail="email"
-              typeCPF="cpf"
-            />
-            <input type="button" value="enviar" />
-          </form>
+        <div className={styles.bgCampos}>
+          <CampoForm />
         </div>
       </section>
     </>
