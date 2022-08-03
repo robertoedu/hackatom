@@ -6,7 +6,7 @@ export const MainRoutes = () => {
   return (
     <BrowserRouter basename = "/hackatom">
       <Routes>
-        <Route path="/" exact element={<Login />} />
+        <Route path="/" element={<Login />} />
         <Route path="/cadastroProduto" exact element={<CadProduto />} />
       </Routes>
     </BrowserRouter>
