@@ -6,6 +6,9 @@ import { registerSchema } from './schema/Register';
 import { useFormik } from 'formik';
 import { useState } from 'react';
 import "../styles/FormLogin.module.scss"
+import "../styles/FormLogin.module.css"
+
+
 
 export const Form = () => {
   const [showErrors, setShowErrors] = useState(false);
@@ -24,7 +27,15 @@ export const Form = () => {
   const onSubmit = (e) => {
     setShowErrors(true);
     handleSubmit(e);
+    login();
   };
+
+  // FUNCAO RESPONSAVEL POR VERIFICAR EMAIL E CPF NA BASE,E REDIRECIONAR PARA A LISTA CRIADA, OU PARA A CRIACAO DE LISTA.
+
+  function login() {
+
+    alert("logou no sistema")
+  }
 
   return (
 
