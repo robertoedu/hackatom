@@ -1,3 +1,6 @@
+// estilos
+//import '../styles/FormLogin.module.scss';
+//import '../styles/FormLogin.module.css';
 // componentes
 import { Button } from './Button';
 import { Input } from './Input';
@@ -5,10 +8,6 @@ import { registerSchema } from './schema/Register';
 // utilitários
 import { useFormik } from 'formik';
 import { useState } from 'react';
-import "../styles/FormLogin.module.scss"
-import "../styles/FormLogin.module.css"
-
-
 
 export const Form = () => {
   const [showErrors, setShowErrors] = useState(false);
@@ -27,23 +26,20 @@ export const Form = () => {
   const onSubmit = (e) => {
     setShowErrors(true);
     handleSubmit(e);
-    login();
+    /* login(); */
   };
 
   // FUNCAO RESPONSAVEL POR VERIFICAR EMAIL E CPF NA BASE,E REDIRECIONAR PARA A LISTA CRIADA, OU PARA A CRIACAO DE LISTA.
 
-  function login() {
-
-    alert("logou no sistema")
-  }
+  /*   function login() {
+    alert('logou no sistema');
+  } */
 
   return (
-
-    
     <form onSubmit={onSubmit}>
-      <h1 id='teste'>Login</h1>
+      <h1 id="teste">Login</h1>
       <div>
-        <Input 
+        <Input
           name="email"
           value={values.email}
           label="Email"

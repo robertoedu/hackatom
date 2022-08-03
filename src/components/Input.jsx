@@ -1,6 +1,13 @@
 import React from 'react';
 
-export const Input = ({ name, error = '', value, label = '',type = "", onChange }) => {
+export const Input = ({
+  name,
+  error = '',
+  value,
+  label = '',
+  type = '',
+  onChange,
+}) => {
   return (
     <>
       <label>
