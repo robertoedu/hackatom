@@ -7,7 +7,11 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
+<<<<<<< HEAD
     "airtable": "^0.11.4",
+=======
+    "axios": "^0.27.2",
+>>>>>>> 5fb242a9dce2046d822e9824e001cb8264ba291a
     "formik": "^2.2.9",
     "gh-pages": "^4.0.0",
     "react": "^18.2.0",
