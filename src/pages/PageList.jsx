@@ -16,6 +16,17 @@ export const PageList = () => {
         fetchNextPage();
       });
   });
+
+  const formatData = data => {
+    let dataFormatada = new Intl.DateTimeFormat('pt-BR', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric',
+      weekday: 'short'
+    }).format(data);
+
+    return dataFormatada;
+  };
   return (
     <>
       <span>
@@ -23,9 +34,17 @@ export const PageList = () => {
       </span>
       <div>
         <table>
-          {tb.map(dados => (
-            <td key={dados.id}>{dados.fields.nome}</td>
-          ))}
+          <tbody>
+            {tb.map(dados => (
+              <tr key={dados.id}>
+                <td>{formatData(dados.fields.data_criacao)}</td>
+                <td>{dados.fields.nome}</td>
+                <td>
+                  <span>X</span>
+                </td>
+              </tr>
+            ))}
+          </tbody>
         </table>
       </div>
     </>
