@@ -6,6 +6,8 @@ export const PageList = () => {
     'app6wyVEK4ZQbbAzm'
   );
 
+  const dataSistema = new Date();
+  const [dateInput, setDateInput] = useState();
   const [tb, setTb] = useState([]);
 
   useEffect(() => {
@@ -27,6 +29,11 @@ export const PageList = () => {
 
     return dataFormatada;
   };
+
+  const dataDoInput = dataInput => {
+    let format = new Intl.DateTimeFormat('pt-br').format(dataInput);
+    return format;
+  };
   return (
     <>
       <span>
@@ -46,6 +53,17 @@ export const PageList = () => {
             ))}
           </tbody>
         </table>
+      </div>
+      <div>
+        <p>Data com +15 dias : {dataDoInput(dateInput)}</p>
+
+        <button
+          onClick={() =>
+            setDateInput(dataSistema.setDate(dataSistema.getDate() + 15))
+          }
+        >
+          Add + 15
+        </button>
       </div>
     </>
   );
