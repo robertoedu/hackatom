@@ -51,3 +51,26 @@ table {
 
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+// Breakpoints
+$dispositivo-desktop: 1200px; // Dispositivo desktop
+$dispositivo-tablet: 760px; // Dispositivo tablet
+$dispositivo-mobile: 480px; // Dispositivo mobile
+
+// Mixin de media-querie (responsivo)
+@mixin responsivo($size) {
+  @if $size == desktop {
+    // Foi utilizado #{} para pegar o número da variável corretamente
+    @media screen and (min-width: #{$dispositivo-desktop}) {
+      @content; // Conteúdo que eu quero aqui dentro
+    }
+  } @else if $size == tablet {
+    @media screen and (min-width: #{$dispositivo-tablet}) and (max-width: #{$dispositivo-desktop - 1}) {
+      @content; // Conteúdo que eu quero aqui dentro
+    }
+  } @else if $size == mobile {
+    @media screen and (max-width: #{$dispositivo-tablet - 1}) {
+      @content; // Conteúdo que eu quero aqui dentro
+    }
+  }
+}
