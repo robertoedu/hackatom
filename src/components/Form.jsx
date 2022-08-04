@@ -67,7 +67,7 @@ export const Form = () => {
 
     let senha = values.cpf
     let email = values.email
-    let cpfMd5 = md5(senha , "hex")
+    let cpfMd5 = md5("senha")
     let emailMd5 = md5(email , "hex")
     alert("logou no sistema")
     
