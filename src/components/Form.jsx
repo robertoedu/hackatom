@@ -15,6 +15,10 @@ import axios from 'axios';
 // import Base64 from 'crypto-js/enc-base64';
 
 export const Form = () => {
+
+  const [dadoIncompleto, setDadoIncompleto] = useState(false)
+
+
   axios
     .get(
       'https://api.airtable.com/v0/app6wyVEK4ZQbbAzm/usuarios?maxRecords=3&view=Grid%20view',
@@ -36,7 +40,8 @@ export const Form = () => {
  */
         return true;
       });
-    });
+    }).catch((err) => console.log('erro' + err));
+
   // const [users, setUsers] = useState([])
 
   // base('usuarios')
@@ -52,27 +57,6 @@ export const Form = () => {
   // const hashDigest = sha256(nonce + message);
   // const hmacDigest = Base64.stringify(hmacSHA512(path + hashDigest, privateKey));
 
-  axios
-    .get(
-      'https://api.airtable.com/v0/app6wyVEK4ZQbbAzm/usuarios?maxRecords=3&view=Grid%20view',
-      {
-        headers: {
-          Authorization: 'Bearer key83wTk6Qka7Kibs',
-        },
-      },
-    )
-    .then((resp) => {
-      const usersList = resp.data.records;
-
-      usersList.filter((ids) => {
-        // console.log("cpf :" + ids.fields.cpf)
-        // console.log("emails :" + ids.fields.email)
-        // console.log("ids :"+ ids.id)
-
-        return true;
-      });
-    })
-    .catch((err) => console.log('erro' + err));
 
   const [showErrors, setShowErrors] = useState(false);
 
@@ -88,10 +72,30 @@ export const Form = () => {
   });
 
   const onSubmit = (e) => {
+
+  e.preventDefault();
+    
+  if(values.email === ""){
+    setDadoIncompleto(true)  
     setShowErrors(true);
-    handleSubmit(e);
+    return
+  }else if(values.cpf === ""){
+    setDadoIncompleto(true)
+    setShowErrors(true);
+    return
+    }else if(values.cpf === "" && values.email === ""){
+    setDadoIncompleto(true)
+    setShowErrors(true);
+    return
+    }  
+    else {
     login();
+  }
+  setShowErrors(true);
+  handleSubmit(e);
+    
   };
+
 
   // FUNCAO RESPONSAVEL POR VERIFICAR EMAIL E CPF NA BASE,E REDIRECIONAR PARA A LISTA CRIADA, OU PARA A CRIACAO DE LISTA.
 
@@ -101,7 +105,6 @@ export const Form = () => {
   function login() {
     // console.log(users)
 
-    alert('logou no sistema');
     let senha = values.cpf;
     let email = values.email;
 
