@@ -1,9 +1,9 @@
-import Airtable from 'airtable';
+import { Airtable } from 'airtable';
 import { useEffect, useState } from 'react';
 
 export const PageList = () => {
   const base = new Airtable({ apiKey: 'key83wTk6Qka7Kibs' }).base(
-    'app6wyVEK4ZQbbAzm'
+    'app6wyVEK4ZQbbAzm',
   );
 
   const [tb, setTb] = useState([]);
@@ -23,7 +23,7 @@ export const PageList = () => {
       </span>
       <div>
         <table>
-          {tb.map(dados => (
+          {tb.map((dados) => (
             <td key={dados.id}>{dados.fields.nome}</td>
           ))}
         </table>

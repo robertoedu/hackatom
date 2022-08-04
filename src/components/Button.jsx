@@ -1,5 +1,9 @@
-import React from 'react';
+import styles from '../styles/ButtonLogin.module.scss';
 
 export const Button = ({ children, type }) => {
-  return <button type={type}>{children}</button>;
+  return (
+    <button className={styles.bgButton} type={type}>
+      {children}
+    </button>
+  );
 };
