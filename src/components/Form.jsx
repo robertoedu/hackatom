@@ -1,6 +1,7 @@
 // estilos
 import styles from '../styles/FormLogin.module.scss';
 // componentes
+import { Header } from './Header'
 import { Button } from './Button';
 import { Input } from './Input';
 import { registerSchema } from './schema/Register';
@@ -115,28 +116,32 @@ export const Form = () => {
   }
 
   return (
-    <form className={styles.bgForm} onSubmit={onSubmit}>
-      <h1>Login</h1>
-      <div className={styles.bgInputs}>
-        <Input
-          name="email"
-          value={values.email}
-          label="Email"
-          onChange={handleChange}
-          error={showErrors ? errors.email : ''}
-        />
-        <Input
-          name="cpf"
-          value={values.cpf}
-          label="CPF"
-          type="number"
-          onChange={handleChange}
-          error={showErrors ? errors.cpf : ''}
-        />
-        <div className={styles.bgButton}>
-          <Button type="submit">Entrar</Button>
+
+    <>
+      <Header />
+      <form className={styles.bgForm} onSubmit={onSubmit}>
+        <h1>Login</h1>
+        <div className={styles.bgInputs}>
+          <Input
+            name="email"
+            value={values.email}
+            label="Email"
+            onChange={handleChange}
+            error={showErrors ? errors.email : ''}
+          />
+          <Input
+            name="cpf"
+            value={values.cpf}
+            label="CPF"
+            type="text"
+            onChange={handleChange}
+            error={showErrors ? errors.cpf : ''}
+          />
+          <div className={styles.bgButton}>
+            <Button type="submit">Entrar</Button>
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </>
   );
 };

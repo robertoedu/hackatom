@@ -1,4 +1,4 @@
-.bgButton{
+.bgButton {
   background-color: #d11507;
   color: #fff;
   cursor: pointer;
@@ -8,9 +8,8 @@
   width: 50%;
   transition: .2s;
   font-size: larger;
+}
 
-  &:hover{
-    background-color: darken($color: #d11507, $amount: 10);
-  }
-
+.bgButton:hover {
+  background-color: #a01005;
 }
