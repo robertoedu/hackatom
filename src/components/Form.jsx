@@ -6,56 +6,19 @@ import { Button } from './Button';
 import { Input } from './Input';
 import { registerSchema } from './schema/Register';
 // utilitários
+import MD5 from 'crypto-js/md5';
 import { useFormik } from 'formik';
 import { useState } from 'react';
 import axios from 'axios';
 
-// import sha256 from 'crypto-js/sha256';
-// import hmacSHA512 from 'crypto-js/hmac-sha512';
-// import Base64 from 'crypto-js/enc-base64';
+
 
 export const Form = () => {
 
   const [dadoIncompleto, setDadoIncompleto] = useState(false)
 
 
-  axios
-    .get(
-      'https://api.airtable.com/v0/app6wyVEK4ZQbbAzm/usuarios?maxRecords=3&view=Grid%20view',
-      {
-        headers: {
-          Authorization: 'Bearer key83wTk6Qka7Kibs',
-        },
-      },
-    )
-    .then((resp) => {
-      console.log(resp.data.records);
-
-      let usersList = resp.data.records;
-
-      usersList.filter((ids) => {
-        /*  console.log('cpf :' + ids.fields.cpf);
-        console.log('emails :' + ids.fields.email);
-        console.log('ids :' + ids.id);
- */
-        return true;
-      });
-    }).catch((err) => console.log('erro' + err));
-
-  // const [users, setUsers] = useState([])
-
-  // base('usuarios')
-  //     .select({ view: 'Grid view' })
-  //     .eachPage((records, fetchNextPage) => {
-  //     setUsers(records)
-  //     fetchNextPage();
-  //     });
-
-  const md5 = require('crypto-js/md5');
-
-  // let message, nonce, path, privateKey;
-  // const hashDigest = sha256(nonce + message);
-  // const hmacDigest = Base64.stringify(hmacSHA512(path + hashDigest, privateKey));
+ 
 
 
   const [showErrors, setShowErrors] = useState(false);
@@ -73,50 +36,72 @@ export const Form = () => {
 
   const onSubmit = (e) => {
 
-  e.preventDefault();
-    
-  if(values.email === ""){
-    setDadoIncompleto(true)  
-    setShowErrors(true);
-    return
-  }else if(values.cpf === ""){
-    setDadoIncompleto(true)
-    setShowErrors(true);
-    return
-    }else if(values.cpf === "" && values.email === ""){
-    setDadoIncompleto(true)
-    setShowErrors(true);
-    return
-    }  
+    e.preventDefault();
+
+    if (values.email === "") {
+      setDadoIncompleto(true)
+      setShowErrors(true);
+
+    } else if (values.cpf === "") {
+      setDadoIncompleto(true)
+      setShowErrors(true);
+
+    } else if (values.cpf === "" && values.email === "") {
+      setDadoIncompleto(true)
+      setShowErrors(true);
+      alert('rodou false')
+
+    }
     else {
-    login();
-  }
-  setShowErrors(true);
-  handleSubmit(e);
-    
+      login();
+      
+    }
+    handleSubmit(e);
+
   };
 
 
   // FUNCAO RESPONSAVEL POR VERIFICAR EMAIL E CPF NA BASE,E REDIRECIONAR PARA A LISTA CRIADA, OU PARA A CRIACAO DE LISTA.
-
-  /*   function login() {
-    alert('logou no sistema');
-  } */
+  
   function login() {
-    // console.log(users)
-
-    let senha = values.cpf;
+    let cpf = values.cpf;
     let email = values.email;
+    let conc = email + cpf;
+    let md5 = MD5(conc).toString()   
 
-    let cpfMd5 = md5(senha, 'hex');
-    let emailMd5 = md5(email, 'hex');
-    alert('logou no sistema');
+        
+    axios.get("https://api.airtable.com/v0/app6wyVEK4ZQbbAzm/Produtos",{
+      headers: {
+        'Authorization': 'Bearer key83wTk6Qka7Kibs'
+    }
+    }).then( api => {
+      let ids = api.data.records
+      
+      ids.filter(id => {
+        
+        if(id.id === md5){
 
-    console.log(senha);
-    console.log(cpfMd5);
-    console.log(emailMd5);
-    console.log(email);
+          alert('direcionar lista criada')
+
+        }else {
+          alert('criar lista nova')         
+        }
+
+        return true
+      })
+    })  
   }
+  
+  
+    
+    // if(md5 === api.userId){
+
+    //   // show list 
+    // }else if(md5 === api.userId){
+    //   // criar lista e salvar md5
+    // }
+
+
 
   return (
 

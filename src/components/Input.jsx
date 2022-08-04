@@ -11,8 +11,8 @@ export const Input = ({
   return (
     <>
       <label className={styles.bgLabel}>
-        {label}
-        <input name={name} value={value} type={type} onChange={onChange} />
+        {/* {label} */}
+        <input placeholder={label} name={name} value={value} type={type} onChange={onChange} />
       </label>
       {error && <span>{error}</span>}
     </>
