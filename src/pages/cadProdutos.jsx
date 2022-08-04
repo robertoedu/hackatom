@@ -1,5 +1,10 @@
-import React from 'react';
+// components
+import FormProduto from '../components/FormProdutos';
 
 export const CadProduto = () => {
-  return <div>Vários produtos</div>;
+  return (
+    <>
+      <FormProduto />
+    </>
+  );
 };
