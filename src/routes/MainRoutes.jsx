@@ -4,7 +4,7 @@ import { Login } from '../pages/Login';
 
 export const MainRoutes = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename = "/hackatom">
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/cadastroProduto" element={<CadProduto />} />
