@@ -96,6 +96,7 @@ export const Form = () => {
             error={showErrors ? errors.email : ''}
           />
           <Input
+            typeMask="999.999.999-99"
             name="cpf"
             value={values.cpf}
             label="CPF"
