@@ -18,12 +18,15 @@ export const Form = () => {
   const navigate = useNavigate();
 
   const { values, errors, handleChange, handleSubmit } = useFormik({
+    validationSchema: registerSchema,
+    validateOnBlur: false,
+    validateOnChange: false,
     initialValues: {
       email: '',
       cpf: '',
     },
-    validationSchema: registerSchema,
     onSubmit: (values) => {
+      alert(JSON.stringify(values, null, 2));
       console.log(values);
     },
   });
@@ -31,8 +34,13 @@ export const Form = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (values.email === '') {
+    const regEmail = values.email.replace(
+      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+    );
+
+    if (values.email === '' || values.email !== regEmail) {
       setShowErrors(true);
+      return;
     } else if (values.cpf === '') {
       setShowErrors(true);
     } else if (values.cpf === '' && values.email === '') {
@@ -96,7 +104,7 @@ export const Form = () => {
             error={showErrors ? errors.email : ''}
           />
           <Input
-            typeMask="999.999.999-99"
+            /*  typeMask="999.999.999-99" */
             name="cpf"
             value={values.cpf}
             label="CPF"
