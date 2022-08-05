@@ -14,9 +14,8 @@ import axios from 'axios';
 import MD5 from 'crypto-js/md5';
 
 export const Form = () => {
-  const navigate = useNavigate();
-
   const [showErrors, setShowErrors] = useState(false);
+  const navigate = useNavigate();
 
   const { values, errors, handleChange, handleSubmit } = useFormik({
     initialValues: {
@@ -45,7 +44,6 @@ export const Form = () => {
   };
 
   // FUNCAO RESPONSAVEL POR VERIFICAR EMAIL E CPF NA BASE,E REDIRECIONAR PARA A LISTA CRIADA, OU PARA A CRIACAO DE LISTA.
-
   function login() {
     let cpf = values.cpf;
     let email = values.email;
