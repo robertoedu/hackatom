@@ -1,26 +1,20 @@
 // estilos
 import styles from '../styles/FormLogin.module.scss';
 // componentes
-import { Header } from './Header'
+import { Header } from './Header';
 import { Button } from './Button';
 import { Input } from './Input';
 import { registerSchema } from './schema/Register';
 import { SetMd5 } from './CheckUser';
 // utilitários
-import MD5 from 'crypto-js/md5';
-import { useFormik } from 'formik';
-import { useState } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
-
+import { useState } from 'react';
+import { useFormik } from 'formik';
+import axios from 'axios';
+import MD5 from 'crypto-js/md5';
 
 export const Form = () => {
-
   const navigate = useNavigate();
-
-
-
 
   const [showErrors, setShowErrors] = useState(false);
 
@@ -36,27 +30,19 @@ export const Form = () => {
   });
 
   const onSubmit = (e) => {
-
     e.preventDefault();
 
-    if (values.email === "") {
+    if (values.email === '') {
       setShowErrors(true);
-
-    } else if (values.cpf === "") {
+    } else if (values.cpf === '') {
       setShowErrors(true);
-
-    } else if (values.cpf === "" && values.email === "") {
-
+    } else if (values.cpf === '' && values.email === '') {
       setShowErrors(true);
-      }
-    else {
+    } else {
       login();
-
     }
     handleSubmit(e);
-
   };
-
 
   // FUNCAO RESPONSAVEL POR VERIFICAR EMAIL E CPF NA BASE,E REDIRECIONAR PARA A LISTA CRIADA, OU PARA A CRIACAO DE LISTA.
 
@@ -64,49 +50,41 @@ export const Form = () => {
     let cpf = values.cpf;
     let email = values.email;
     let conc = email + cpf;
-    let md5 = MD5(conc).toString()
+    let md5 = MD5(conc).toString();
 
-
-    axios.get("https://api.airtable.com/v0/app6wyVEK4ZQbbAzm/Produtos", {
-      headers: {
-        'Authorization': 'Bearer key83wTk6Qka7Kibs'
-      }
-    }).then(api => {
-      let ids = api.data.records
-
-      ids.filter(id => {
-
-        if (id.fields.id_usuario === md5) {
-
-          alert('direcionar lista criada')
-          SetMd5(md5);
-          navigate('/cadastroProduto')
-        }
-        else {
-          alert('criar lista nova')
-          SetMd5(md5);
-          navigate('/cadastraProduto')
-
-        }
-
-        return true
+    axios
+      .get('https://api.airtable.com/v0/app6wyVEK4ZQbbAzm/Produtos', {
+        headers: {
+          Authorization: 'Bearer key83wTk6Qka7Kibs',
+        },
       })
-    })
+      .then((api) => {
+        let ids = api.data.records;
+
+        ids.filter((id) => {
+          if (id.fields.id_usuario === md5) {
+            alert('direcionar lista criada');
+            SetMd5(md5);
+            navigate('/cadastroProduto');
+          } else {
+            alert('criar lista nova');
+            SetMd5(md5);
+            navigate('/cadastraProduto');
+          }
+
+          return true;
+        });
+      });
   }
-
-
 
   // if(md5 === api.userId){
 
-  //   // show list 
+  //   // show list
   // }else if(md5 === api.userId){
   //   // criar lista e salvar md5
   // }
 
-
-
   return (
-
     <>
       <Header />
       <form className={styles.bgForm} onSubmit={onSubmit}>
