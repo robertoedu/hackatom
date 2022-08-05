@@ -5,20 +5,21 @@ import { Header } from './Header'
 import { Button } from './Button';
 import { Input } from './Input';
 import { registerSchema } from './schema/Register';
+import { SetMd5 } from './CheckUser';
 // utilitários
 import MD5 from 'crypto-js/md5';
 import { useFormik } from 'formik';
 import { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 
 export const Form = () => {
 
-  const [dadoIncompleto, setDadoIncompleto] = useState(false)
+  const navigate = useNavigate();
 
 
- 
 
 
   const [showErrors, setShowErrors] = useState(false);
@@ -39,22 +40,18 @@ export const Form = () => {
     e.preventDefault();
 
     if (values.email === "") {
-      setDadoIncompleto(true)
       setShowErrors(true);
 
     } else if (values.cpf === "") {
-      setDadoIncompleto(true)
       setShowErrors(true);
 
     } else if (values.cpf === "" && values.email === "") {
-      setDadoIncompleto(true)
-      setShowErrors(true);
-      alert('rodou false')
 
-    }
+      setShowErrors(true);
+      }
     else {
       login();
-      
+
     }
     handleSubmit(e);
 
@@ -62,44 +59,49 @@ export const Form = () => {
 
 
   // FUNCAO RESPONSAVEL POR VERIFICAR EMAIL E CPF NA BASE,E REDIRECIONAR PARA A LISTA CRIADA, OU PARA A CRIACAO DE LISTA.
-  
+
   function login() {
     let cpf = values.cpf;
     let email = values.email;
     let conc = email + cpf;
-    let md5 = MD5(conc).toString()   
+    let md5 = MD5(conc).toString()
 
-        
-    axios.get("https://api.airtable.com/v0/app6wyVEK4ZQbbAzm/Produtos",{
+
+    axios.get("https://api.airtable.com/v0/app6wyVEK4ZQbbAzm/Produtos", {
       headers: {
         'Authorization': 'Bearer key83wTk6Qka7Kibs'
-    }
-    }).then( api => {
+      }
+    }).then(api => {
       let ids = api.data.records
-      
+
       ids.filter(id => {
-        
-        if(id.id === md5){
+
+        if (id.fields.id_usuario === md5) {
 
           alert('direcionar lista criada')
+          SetMd5(md5);
+          navigate('/cadastroProduto')
+        }
+        else {
+          alert('criar lista nova')
+          SetMd5(md5);
+          navigate('/cadastraProduto')
 
-        }else {
-          alert('criar lista nova')         
         }
 
         return true
       })
-    })  
+    })
   }
-  
-  
-    
-    // if(md5 === api.userId){
 
-    //   // show list 
-    // }else if(md5 === api.userId){
-    //   // criar lista e salvar md5
-    // }
+
+
+  // if(md5 === api.userId){
+
+  //   // show list 
+  // }else if(md5 === api.userId){
+  //   // criar lista e salvar md5
+  // }
 
 
 
