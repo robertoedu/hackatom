@@ -60,6 +60,9 @@ export const Form = () => {
         let ids = api.data.records;
 
         ids.filter((id) => {
+
+          // Compara os Ids, se o Cliente Ja existir direciona para a lista ja criada.
+          //Se o id(md5) nao existir, Salva o Id(localStorage), e direciona para criar a lista
           if (id.fields.id_usuario === md5) {
             alert('direcionar lista criada');
             SetMd5(md5);
@@ -67,20 +70,13 @@ export const Form = () => {
           } else {
             alert('criar lista nova');
             SetMd5(md5);
-            navigate('/cadastraProduto');
+            navigate('/cadastroProduto');
           }
 
           return true;
         });
       });
   }
-
-  // if(md5 === api.userId){
-
-  //   // show list
-  // }else if(md5 === api.userId){
-  //   // criar lista e salvar md5
-  // }
 
   return (
     <>
