@@ -1,4 +1,7 @@
+// estilos
 import styles from '../styles/InputLogin.module.scss';
+// utilitários
+import InputMask from 'react-input-mask';
 
 export const Input = ({
   name,
@@ -7,12 +10,19 @@ export const Input = ({
   label = '',
   type = '',
   onChange,
+  typeMask,
 }) => {
   return (
     <>
       <label className={styles.bgLabel}>
-        {/* {label} */}
-        <input placeholder={label} name={name} value={value} type={type} onChange={onChange} />
+        <InputMask
+          mask={typeMask}
+          placeholder={label}
+          name={name}
+          value={value}
+          type={type}
+          onChange={onChange}
+        />
       </label>
       {error && <span>{error}</span>}
     </>
