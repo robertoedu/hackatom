@@ -1,7 +1,8 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import SideBar from '../components/SideBar';
-import { CadProduto } from '../pages/cadProdutos';
+import  Produtos  from '../pages/Produtos';
 import { Login } from '../pages/Login';
+import Lista from '../pages/Lista';
 
 export const MainRoutes = () => {
   return (
@@ -9,7 +10,8 @@ export const MainRoutes = () => {
       <SideBar>
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/cadastroProduto" element={<CadProduto />} />
+          <Route path="/produtos" element={<Produtos />} />
+          <Route path="/lista" element={<Lista />} />
         </Routes>
       </SideBar>
     </BrowserRouter>
