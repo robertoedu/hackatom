@@ -1,12 +1,10 @@
-import * as React from 'react';
+import { useState } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import SideBar from '../components/SideBar';
+import Button from '@mui/material/Button'
+import DialogDelete from '../components/DialogDelete';
 
-const columns = [
-  { field: 'produto', headerName: 'Produto', width: 130 },
-  { field: 'dataCad', headerName: 'Data de cadastro', width: 130 },
 
-];
 
 const rows = [
   { id: 1, produto: 'Snow', dataCad: 'Jon', age: 35 },
@@ -20,20 +18,60 @@ const rows = [
   { id: 9, produto: 'Roxie', dataCad: 'Harvey', age: 65 },
 ];
 
-export default function Produtos() {
-  return (
+// const handleCLickRow = (event, row) => {
+//   console.log(event)
+//   console.log(row)
+  
+// }
 
+export default function Produtos() {
+  const columns = [
+    { field: 'produto', headerName: 'Produto', width: 150 },
+    { field: 'dataCad', headerName: 'Data de cadastro', width: 200},
+    { 
+      field: 'Ações',
+      renderCell: (rowvalue) => {
+        return (
+          <Button
+            variant="contained"
+            color="primary"
+            onClick= {() => {
+              setConfirmDialog({
+                isOpen: true,
+                title: 'Tem certeza disso?',
+                subtitle:"Você não poderá desfazer essa ação!!",
+                onConfirm:() => { handleClick(rowvalue)}
+              })
+            }}
+          >
+            Deletar
+          </Button>
+        );
+      }
+    }
+  
+  ];
+  const [confirmDialog, setConfirmDialog] = useState({isOpen:false, title:'', subtitle: ''})
+  const handleClick = (rowvalue) => {
+      console.log("BOTAO",rowvalue.row.produto)
+  }
+
+  return (
     <>
     <SideBar>
-      <div style={{ height: '80%', width: '100%' }}>
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          pageSize={15}
-          rowsPerPageOptions={[15]}
-        />
-      </div>
-    </ SideBar>
-      </>
-      );
+        <div style={{ height: '80%', width: '100%' }}>
+          <DataGrid
+            rows={rows}
+            columns={columns}
+            pageSize={15}
+            rowsPerPageOptions={[15]}
+          />
+        </div>
+      </SideBar>
+      <DialogDelete
+        confirmDialog={confirmDialog}
+        setConfirmDialog={setConfirmDialog}
+      />
+  </>
+  );
 }

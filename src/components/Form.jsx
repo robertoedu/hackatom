@@ -29,13 +29,15 @@ export const Form = () => {
       cpf: '',
     },
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-      console.log(values);
+      // alert(JSON.stringify(values, null, 2));
+      // console.log(values);
     },
   });
 
-  const onSubmit = (e) => {
+function teste(e) {
     e.preventDefault();
+
+    // const emailRegex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i;
 
     if (values.cpf === '' && values.email === '') {
       setShowErrors(true);
@@ -64,6 +66,7 @@ export const Form = () => {
     })
       .then(api => {
         let ids = api.data.records;
+        
 
         ids.filter((id) => {
 
@@ -88,7 +91,7 @@ export const Form = () => {
   return (
     <>
       <Header />
-      <form className={styles.bgForm} onSubmit={onSubmit}>
+      <form className={styles.bgForm} onSubmit={teste}>
         <h1>Login</h1>
         <div className={styles.bgInputs}>
           <Input

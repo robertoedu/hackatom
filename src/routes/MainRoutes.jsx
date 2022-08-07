@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-
 import Produtos from '../pages/Produtos';
 import { Login } from '../pages/Login';
 import Lista from '../pages/Lista';
@@ -15,6 +14,7 @@ export const MainRoutes = () => {
         <Route exact path="/produtos/*" element={<PrivateRoute />}>
           <Route path="/produtos/*" exact element={<Produtos />} />
         </Route>
+
         <Route exact path="/list/*" element={<PrivateRoute />}>
           <Route exact path="/list/*" element={<Lista />} />
         </Route>
