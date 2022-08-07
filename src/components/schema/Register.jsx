@@ -1,7 +1,10 @@
 import * as yup from 'yup';
 
 export const registerSchema = yup.object().shape({
-  email: yup.string().email('E-mail Inválido!').required('E-mail obrigatório!'),
+  email: yup
+  .string()
+  .email('E-mail Inválido!')
+  .required('E-mail obrigatório!'),
 
   cpf: yup
     .string()

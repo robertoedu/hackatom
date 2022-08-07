@@ -10,13 +10,13 @@ export const Input = ({
   label = '',
   type = '',
   onChange,
-  typeMask,
+  // typeMask,
 }) => {
   return (
     <>
       <label className={styles.bgLabel}>
         <InputMask
-          mask={typeMask}
+          // mask={typeMask}
           placeholder={label}
           name={name}
           value={value}

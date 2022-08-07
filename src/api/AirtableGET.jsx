@@ -1,13 +1,11 @@
 import axios from 'axios';
 
-// const API = 'https://api.airtable.com/v0/app6wyVEK4ZQbbAzm/Produtos';
-
 const api = axios.create({
   baseURL: 'https://api.airtable.com/v0/app6wyVEK4ZQbbAzm',
 })
 
 api.interceptors.request.use(async config => {
-  const Bearer = 'key83wTk6Qka7Kibs'
+  const Bearer = 'key83wTk6Qka7Kibs';
 
   if(Bearer) {
     api.defaults.headers.authorization = `Bearer ${Bearer}`;
@@ -16,7 +14,7 @@ api.interceptors.request.use(async config => {
   return config;
 });
 
-export default api 
+export default api ;
 
 
 

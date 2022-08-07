@@ -10,9 +10,9 @@ import { SetMd5 } from './CheckUser';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useFormik } from 'formik';
-// import axios from 'axios';
 import MD5 from 'crypto-js/md5';
-import api from '../api/AirtableGET';
+import axios from 'axios';
+
 
 
 
@@ -37,16 +37,12 @@ export const Form = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    const regEmail = values.email.replace(
-      /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
-    );
-
-    if (values.email === '' || values.email !== regEmail) {
+    if (values.cpf === '' && values.email === '') {
       setShowErrors(true);
       return;
     } else if (values.cpf === '') {
       setShowErrors(true);
-    } else if (values.cpf === '' && values.email === '') {
+    } else if (values.email === '') {
       setShowErrors(true);
     } else {
       login();
@@ -55,20 +51,18 @@ export const Form = () => {
   };
 
   // FUNCAO RESPONSAVEL POR VERIFICAR EMAIL E CPF NA BASE,E REDIRECIONAR PARA A LISTA CRIADA, OU PARA A CRIACAO DE LISTA.
-  function login() {
+  async function login() {
     let cpf = values.cpf;
     let email = values.email;
     let conc = email + cpf;
     let md5 = MD5(conc).toString();
 
-    // axios
-    //   .get('https://api.airtable.com/v0/app6wyVEK4ZQbbAzm/Produtos', {
-    //     headers: {
-    //       Authorization: 'Bearer key83wTk6Qka7Kibs',
-    //     },
-    //   })
-
-      api.get("/Produtos").then(api => {
+    axios.get('https://api.airtable.com/v0/app6wyVEK4ZQbbAzm/Produtos', {
+      headers: {
+        Authorization: 'Bearer key83wTk6Qka7Kibs',
+      },
+    })
+      .then(api => {
         let ids = api.data.records;
 
         ids.filter((id) => {
@@ -118,7 +112,7 @@ export const Form = () => {
           </div>
         </div>
       </form>
-      
+
     </>
   );
 };

@@ -8,17 +8,19 @@ import PrivateRoute from '../components/Private';
 export const MainRoutes = () => {
   return (
     <BrowserRouter basename="/hackatom">
-      
-        <Routes>
-          <Route path="/" element={<Login />} />
 
-          <Route exact path="/produtos/*" element={<PrivateRoute />}>
-            <Route path="/produtos/*" exact element={<Produtos />} />
-          </Route>
-          <Route exact path="/list" element={<Lista />} />
+      <Routes>
+        <Route path="/" element={<Login />} />
 
-        </Routes>
-      
+        <Route exact path="/produtos/*" element={<PrivateRoute />}>
+          <Route path="/produtos/*" exact element={<Produtos />} />
+        </Route>
+        <Route exact path="/list/*" element={<PrivateRoute />}>
+          <Route exact path="/list/*" element={<Lista />} />
+        </Route>
+
+      </Routes>
+
     </BrowserRouter>
   );
 };
