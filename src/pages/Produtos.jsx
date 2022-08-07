@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
+import SideBar from '../components/SideBar';
 
 const columns = [
   { field: 'produto', headerName: 'Produto', width: 130 },
@@ -21,14 +22,18 @@ const rows = [
 
 export default function Produtos() {
   return (
-    <div style={{ height: '80%', width: '100%' }}>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        pageSize={15}
-        rowsPerPageOptions={[15]}
-        
-      />
-    </div>
-  );
+
+    <>
+    <SideBar>
+      <div style={{ height: '80%', width: '100%' }}>
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          pageSize={15}
+          rowsPerPageOptions={[15]}
+        />
+      </div>
+    </ SideBar>
+      </>
+      );
 }

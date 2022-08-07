@@ -14,7 +14,7 @@ const SideBar = ({children}) => {
   const menuItem = [
 
     {
-      path:"/lista",
+      path:"/list",
       name:"Lista de compras",
       icon:<FaShoppingCart/>
     },

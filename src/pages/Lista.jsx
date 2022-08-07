@@ -1,11 +1,17 @@
 // components
 // import FormProduto from '../components/FormProdutos';
+import SideBar from "../components/SideBar";
 
- const Lista = () => {
+const Lista = () => {
   return (
-    <div>
-      <h1>Página de Lista</h1>
-    </div>
+    <>
+      <SideBar>
+        <div>
+          <h1>Página de Lista</h1>
+        </div>
+      </SideBar>
+    </>
+
   );
 };
 
