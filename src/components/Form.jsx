@@ -70,6 +70,7 @@ export const Form = () => {
 
       api.get("/Produtos").then(api => {
         let ids = api.data.records;
+        console.log(api.data)
 
         ids.filter((id) => {
 
