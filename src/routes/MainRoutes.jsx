@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import SideBar from '../components/SideBar';
 import  Produtos  from '../pages/Produtos';
 import { Login } from '../pages/Login';
-import { PageList } from '../pages/PageList';
+import  PageList  from '../pages/PageList';
 
 export const MainRoutes = () => {
   return (

@@ -12,7 +12,7 @@ const SideBar = ({children}) => {
   const toggle = () => setisOpen (!isOpen)
   const menuItem = [
     {
-      path:"/lista",
+      path:"/list",
       name:"Lista de compras",
       icon:<FaShoppingCart/>
     },
