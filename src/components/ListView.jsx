@@ -146,7 +146,7 @@ function ListView() {
             <Header />
 
             <div className={styles.ListTable}>
-                <h1 className={styles.h1} > Produtos Cadastrados</h1>
+                <h1 className={styles.h1} >Produtos Cadastrados</h1>
                 <Table columns={columns} data={data} />
             </div>
         </>
