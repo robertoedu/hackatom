@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/hackatom/static/css/main.9f2b68bd.css",
-    "main.js": "/hackatom/static/js/main.847fdf20.js",
+    "main.css": "/hackatom/static/css/main.6d510c12.css",
+    "main.js": "/hackatom/static/js/main.48768138.js",
     "index.html": "/hackatom/index.html",
-    "main.9f2b68bd.css.map": "/hackatom/static/css/main.9f2b68bd.css.map",
-    "main.847fdf20.js.map": "/hackatom/static/js/main.847fdf20.js.map"
+    "main.6d510c12.css.map": "/hackatom/static/css/main.6d510c12.css.map",
+    "main.48768138.js.map": "/hackatom/static/js/main.48768138.js.map"
   },
   "entrypoints": [
-    "static/css/main.9f2b68bd.css",
-    "static/js/main.847fdf20.js"
+    "static/css/main.6d510c12.css",
+    "static/js/main.48768138.js"
   ]
 }
