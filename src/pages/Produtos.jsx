@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import SideBar from '../components/SideBar';
 import Button from '@mui/material/Button'
 import DialogDelete from '../components/DialogDelete';
+import PopupDialog from '../components/PopupDialog';
 
 
 
@@ -25,9 +26,11 @@ const rows = [
 // }
 
 export default function Produtos() {
+  const [confirmDialog, setconfirmDialog] = useState({isOpen:false, title:'', subtitle: ''})
+  const [openPopup, setopenPopup] = useState(false)
   const columns = [
-    { field: 'produto', headerName: 'Produto', width: 150 },
-    { field: 'dataCad', headerName: 'Data de cadastro', width: 200},
+    { field: 'produto', headerName: 'Produto', width: 300 },
+    { field: 'dataCad', headerName: 'Data de cadastro', width: 300},
     { 
       field: 'Ações',
       renderCell: (rowvalue) => {
@@ -36,7 +39,7 @@ export default function Produtos() {
             variant="contained"
             color="primary"
             onClick= {() => {
-              setConfirmDialog({
+              setconfirmDialog({
                 isOpen: true,
                 title: 'Tem certeza disso?',
                 subtitle:"Você não poderá desfazer essa ação!!",
@@ -51,15 +54,26 @@ export default function Produtos() {
     }
   
   ];
-  const [confirmDialog, setConfirmDialog] = useState({isOpen:false, title:'', subtitle: ''})
   const handleClick = (rowvalue) => {
-      console.log("BOTAO",rowvalue.row.produto)
+    setconfirmDialog({
+      ...confirmDialog,
+      isOpen:false
+    })
+    //aqui vai a função para deletar
+      console.log("BOTAO",rowvalue.row.id)
   }
+//aqui vai carregar os dados da tabela
+  useEffect(() => {
+
+  })
 
   return (
     <>
     <SideBar>
         <div style={{ height: '80%', width: '100%' }}>
+        <Button onClick={() => setopenPopup(true)}  variant="outlined">
+          Adicionar Produto
+        </Button>
           <DataGrid
             rows={rows}
             columns={columns}
@@ -70,8 +84,14 @@ export default function Produtos() {
       </SideBar>
       <DialogDelete
         confirmDialog={confirmDialog}
-        setConfirmDialog={setConfirmDialog}
+        setconfirmDialog={setconfirmDialog}
       />
+      <PopupDialog
+        openPopup={openPopup}
+        setopenPopup={setopenPopup}
+      >
+        
+      </PopupDialog>
   </>
   );
 }

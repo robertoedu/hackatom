@@ -1,54 +1,65 @@
-*{
+* {
   margin: 0;
   padding: 0;
   text-decoration: none;
-};
-.container{
+}
+
+.container {
   display: flex;
 }
-main{
+
+main {
   width: 100%;
   padding: 20px;
 }
-.sidebar{
+
+.sidebar {
   background-color: #FF5331;
   color: white;
   height: 100vh;
   width: 20%;
   transition: all 0.5s;
 }
-.topSection{
+
+.topSection {
   display: flex;
   align-items: center;
   padding: 20px 15px;
 }
-.logo{
+
+.logo {
   width: 75%;
 }
-.bars{
+
+.bars {
   display: flex;
   font-size: 25px;
 }
-.link{
+
+.link {
   display: flex;
   color: white;
   padding: 10px 15px;
   gap: 15px;
   transition: all 0.5s;
 }
-.link:hover{
+
+.link:hover {
   background: #ec755d;
   color: black;
   border-radius: 10px;
   transition: all 0.5s;
 }
-.active{
+
+.active {
   background: #ec755d;
-  color: black
+  color: black;
 }
-.icon, .linkTest{
+
+.icon, .linkTest {
   font-size: 20px;
 }
-.linkTest{
+
+.linkTest {
   width: 100%;
 }

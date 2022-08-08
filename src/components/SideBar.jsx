@@ -1,10 +1,15 @@
 import React, { useState } from 'react'
+
+// Estilizacao da Side Bar
+import styles from'../styles/SideBar.module.scss';
 import {
   FaShoppingBag,
   FaShoppingCart,
   FaBars
 } from 'react-icons/fa'
-import styles from'../styles/SideBar.module.scss';
+
+
+// Dependencias
 import { NavLink } from 'react-router-dom'
 
 const SideBar = ({children}) => {
@@ -29,8 +34,8 @@ const SideBar = ({children}) => {
     <div className={styles.container}>
       <div style={{width: isOpen ? "250px" : "50px"}} className={styles.sidebar}>
         <div className={styles.topSection}>
-          <h1 style={{display: isOpen ? "block" : "none"}}  className={styles.logo}> Logo</h1>
-          <div style={{marginLeft: isOpen ? "50px" : "0px"}} className={styles.bars}>
+          {/* <img src={Logo} alt="logo No Precinho" style={{display: isOpen ? "block" : "none"}}  className={styles.logo} /> */}
+          <div className={styles.bars}>
             <FaBars onClick={toggle}/>
           </div>
         </div>
@@ -48,4 +53,4 @@ const SideBar = ({children}) => {
   )
 }
 
-export default SideBar
+export default SideBar;
