@@ -70,7 +70,7 @@ export const Form = () => {
           if (id.fields.id_usuario === md5) {
             alert('direcionar lista criada');
             SetMd5(md5);
-            navigate('/produtos');
+            navigate('/list');
           } else {
             SetMd5(md5);
             navigate('/produtos');
