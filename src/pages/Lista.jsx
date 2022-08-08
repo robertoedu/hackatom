@@ -1,6 +1,6 @@
 // components
 
-import { ListView } from "../components/ListView";
+import ListView from "../components/ListView";
 import SideBar from "../components/SideBar";
 
 const Lista = () => {
@@ -14,4 +14,4 @@ const Lista = () => {
   );
 };
 
-export default Lista
+export default Lista;
