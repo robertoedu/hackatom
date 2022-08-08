@@ -6,7 +6,7 @@ import { Button } from '@mui/material';
 import style from '../styles/Dialog.module.scss'
 
 export default function DialogDelete(props) {
-  const {confirmDialog, setConfirm} = props;
+  const {confirmDialog, setconfirmDialog} = props;
 
   return (
     <Dialog open = {confirmDialog.isOpen} maxWidth="lg">
@@ -22,14 +22,14 @@ export default function DialogDelete(props) {
         <Button 
           variant='contained'
           color='secondary'
-          
+          onClick={confirmDialog.onConfirm}
         >
           Sim, tenho certeza
         </Button>
         <Button 
           variant='contained'
           color='error'
-          onClick={() => setConfirm({...confirmDialog, isOpen:false})}
+          onClick={() => setconfirmDialog({...confirmDialog, isOpen:false})}
         >
           Não
         </Button>
