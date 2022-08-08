@@ -1,4 +1,4 @@
-import React  , { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import Table from "./Table";
 
@@ -10,21 +10,27 @@ import axios from "axios";
 
 
 export const ListView = () => {
-    
+
     const [data, setData] = useState([]);
 
     useEffect(() => {
         (async () => {
-          const result = await axios.get('https://api.airtable.com/v0/app6wyVEK4ZQbbAzm/Produtos',{
-            headers: {
-                Authorization: 'Bearer key83wTk6Qka7Kibs',
-            },
-          });
-          setData(result.data);
-          console.log(data)
+
+            const result = await axios.get('https://api.airtable.com/v0/app6wyVEK4ZQbbAzm/Produtos', {
+                headers: {
+                    Authorization: 'Bearer key83wTk6Qka7Kibs',
+                },
+
+            });
+
+            setData(result.data);
+
+            let listaData = result
+
+            console.log(listaData)
         })();
-      }, []);
-    
+    }, []);
+
 
     return (
         <>
