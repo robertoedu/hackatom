@@ -28,13 +28,12 @@ main {
 }
 
 .logo {
-  width: 100%;
+  width: 75%;
 }
 
 .bars {
   display: flex;
   font-size: 25px;
-  margin-left: 50px;
 }
 
 .link {

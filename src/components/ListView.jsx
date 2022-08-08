@@ -1,4 +1,5 @@
 import React, { useMemo, useState, useEffect } from "react";
+import { Header } from "./Header";
 
 import Table from "./Table";
 
@@ -26,60 +27,106 @@ function ListView() {
 
             let listaData = result.data.records
 
-            setData(listaData);
+            listaData.filter(resp => {
+                console.log(resp)
+                setData(listaData);
 
-            console.log(listaData)
+                // listaData = resp
+                return true
+            })
+
         })();
-    }, []);
+    }, [data]);
 
     const columns = useMemo(
         () =>
             [
                 {
-                    // first group - TV Show
-                    Header: "TV Show",
-                    // First group columns
+                    // first group - Dom
+                    Header: "Sab.",
+                    // First group columns                    
                     columns: [
                         {
-                            Header: "Name",
-                            accessor: "show.name"
+                            Header: "07",
+                            accessor: "fields.nome"
                         },
-                        {
-                            Header: "Type",
-                            accessor: "show.type"
-                        }
                     ]
                 },
-                
                 {
-                    // Second group - Details
-                    Header: "Details",
-                    // Second group columns
+                    // first group - Dom
+                    Header: "Dom.",
+                    // First group columns                    
                     columns: [
-                      {
-                        Header: "Language",
-                        accessor: "show.language"
-                      },
-                      {
-                        Header: "Genre(s)",
-                        accessor: "show.genres"
-                      },
-                      {
-                        Header: "Runtime",
-                        accessor: "show.runtime"
-                      },
-                      {
-                        Header: "Status",
-                        accessor: "show.status"
-                      }
+                        {
+                            Header: "08",
+                            // accessor: "fields.nome"
+                        },
                     ]
-                  }
+                },
+                {
+                    // first group - Dom
+                    Header: "Seg.",
+                    // First group columns                    
+                    columns: [
+                        {
+                            Header: "09",
+                            // accessor: "fields.nome"
+                        },
+                    ]
+                },
+                {
+                    // first group - Dom
+                    Header: "Ter.",
+                    // First group columns                    
+                    columns: [
+                        {
+                            Header: "10",
+                            // accessor: "fields.nome"
+                        },
+                    ]
+                },
+                {
+                    // first group - Dom
+                    Header: "Qua.",
+                    // First group columns                    
+                    columns: [
+                        {
+                            Header: "11",
+                            // accessor: "fields.nome"
+                            
+                        },
+                    ]
+                },
+                {
+                    // first group - Dom
+                    Header: "Qui.",
+                    // First group columns                    
+                    columns: [
+                        {
+                            Header: "12",
+                            // accessor: "fields.nome"
+                        },
+                    ]
+                },
+                {
+                    // first group - Dom
+                    Header: "Sex.",
+                    // First group columns                    
+                    columns: [
+                        {
+                            Header: "13",
+                            // accessor: "fields.nome"
+                        },
+                    ]
+                },
 
             ], []
     );
 
     return (
         <>
+            <Header />
+            <h1>Produtos Cadastrados</h1>
             <div className="ListTable">
                 <Table columns={columns} data={data} />
             </div>
