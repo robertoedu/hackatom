@@ -1,27 +1,27 @@
 // estilos
 import styles from '../styles/InputLogin.module.scss';
-// utilitários
-import InputMask from 'react-input-mask';
 
 export const Input = ({
   name,
-  error = '',
+  error,
   value,
-  label = '',
-  type = '',
+  label,
+  type,
   onChange,
-  // typeMask,
+  maxLength,
+  onKeyUp,
 }) => {
   return (
     <>
       <label className={styles.bgLabel}>
-        <InputMask
-          // mask={typeMask}
+        <input
           placeholder={label}
           name={name}
           value={value}
           type={type}
           onChange={onChange}
+          maxLength={maxLength}
+          onKeyUp={onKeyUp}
         />
       </label>
       {error && <span>{error}</span>}
