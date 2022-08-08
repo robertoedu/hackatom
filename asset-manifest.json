@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/hackatom/static/css/main.21547d45.css",
-    "main.js": "/hackatom/static/js/main.482d361e.js",
+    "main.js": "/hackatom/static/js/main.1f0d5212.js",
     "index.html": "/hackatom/index.html",
     "main.21547d45.css.map": "/hackatom/static/css/main.21547d45.css.map",
-    "main.482d361e.js.map": "/hackatom/static/js/main.482d361e.js.map"
+    "main.1f0d5212.js.map": "/hackatom/static/js/main.1f0d5212.js.map"
   },
   "entrypoints": [
     "static/css/main.21547d45.css",
-    "static/js/main.482d361e.js"
+    "static/js/main.1f0d5212.js"
   ]
 }
