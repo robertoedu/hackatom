@@ -23,9 +23,9 @@ export const ListView = () => {
 
             });
 
-            setData(result.data);
-
-            let listaData = result
+            let listaData = result.data.records
+            
+            setData(listaData);
 
             console.log(listaData)
         })();
