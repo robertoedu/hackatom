@@ -37,10 +37,7 @@ export const Form = () => {
 
     if (cpf.length < 11) {
       setMostraErrors(true);
-    } else if (
-      email === '' ||
-      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
-    ) {
+    } else if (email === '') {
       setMostraErrors(true);
     } else {
       login();
