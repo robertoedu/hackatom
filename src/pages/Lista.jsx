@@ -1,6 +1,6 @@
 // components
 
-import { ListView } from "../components/ListView";
+import ListView from "../components/ListView";
 import SideBar from "../components/SideBar";
 
 const Lista = () => {

@@ -9,7 +9,7 @@ import axios from "axios";
 
 
 
-export const ListView = () => {
+ const ListView = () => {
 
     const [data, setData] = useState([]);
 
@@ -40,3 +40,5 @@ export const ListView = () => {
         </>
     )
 }
+
+export default ListView;
