@@ -13,11 +13,8 @@ import { useFormik } from 'formik';
 import MD5 from 'crypto-js/md5';
 import axios from 'axios';
 
-
-
-
 export const Form = () => {
-  const [showErrors, setShowErrors] = useState(false);
+  const [mostraErrors, setMostraErrors] = useState(false);
   const navigate = useNavigate();
 
   const { values, errors, handleChange, handleSubmit } = useFormik({
@@ -29,23 +26,22 @@ export const Form = () => {
       cpf: '',
     },
     onSubmit: (values) => {
-      // alert(JSON.stringify(values, null, 2));
       // console.log(values);
     },
   });
 
-function teste(e) {
+  const enviaLogin = (e) => {
     e.preventDefault();
+    let cpf = values.cpf;
+    let email = values.email;
 
-    // const emailRegex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i;
-
-    if (values.cpf === '' && values.email === '') {
-      setShowErrors(true);
-      return;
-    } else if (values.cpf === '') {
-      setShowErrors(true);
-    } else if (values.email === '') {
-      setShowErrors(true);
+    if (cpf.length < 11) {
+      setMostraErrors(true);
+    } else if (
+      email === '' ||
+      /^\w + ([\.-]?\w+) * @\w+ ([\.-]?\w+) * (\.\w{2,3})+$/.test(email)
+    ) {
+      setMostraErrors(true);
     } else {
       login();
     }
@@ -53,23 +49,22 @@ function teste(e) {
   };
 
   // FUNCAO RESPONSAVEL POR VERIFICAR EMAIL E CPF NA BASE,E REDIRECIONAR PARA A LISTA CRIADA, OU PARA A CRIACAO DE LISTA.
-  async function login() {
+  const login = async () => {
     let cpf = values.cpf;
     let email = values.email;
     let conc = email + cpf;
     let md5 = MD5(conc).toString();
 
-    axios.get('https://api.airtable.com/v0/app6wyVEK4ZQbbAzm/Produtos', {
-      headers: {
-        Authorization: 'Bearer key83wTk6Qka7Kibs',
-      },
-    })
-      .then(api => {
+    axios
+      .get('https://api.airtable.com/v0/app6wyVEK4ZQbbAzm/Produtos', {
+        headers: {
+          Authorization: 'Bearer key83wTk6Qka7Kibs',
+        },
+      })
+      .then((api) => {
         let ids = api.data.records;
-        
 
         ids.filter((id) => {
-
           // Compara os Ids, se o Cliente Ja existir direciona para a lista ja criada.
           //Se o id(md5) nao existir, Salva o Id(localStorage), e direciona para criar a lista
           if (id.fields.id_usuario === md5) {
@@ -77,21 +72,29 @@ function teste(e) {
             SetMd5(md5);
             navigate('/produtos');
           } else {
-            alert('criar lista nova');
             SetMd5(md5);
             navigate('/produtos');
           }
-          console.log("md5: " + md5)
-
+          console.log('md5: ' + md5);
           return true;
         });
       });
-  }
+  };
+
+  const mascaraCPF = (e) => {
+    let tamanhoCPF = e.target.value.length;
+
+    if (tamanhoCPF === 3 || tamanhoCPF === 7) {
+      e.target.value += '.';
+    } else if (tamanhoCPF === 11) {
+      e.target.value += '-';
+    }
+  };
 
   return (
     <>
       <Header />
-      <form className={styles.bgForm} onSubmit={teste}>
+      <form className={styles.bgForm} onSubmit={enviaLogin}>
         <h1>Login</h1>
         <div className={styles.bgInputs}>
           <Input
@@ -99,23 +102,23 @@ function teste(e) {
             value={values.email}
             label="Email"
             onChange={handleChange}
-            error={showErrors ? errors.email : ''}
+            error={mostraErrors ? errors.email : ''}
           />
           <Input
-            /*  typeMask="999.999.999-99" */
             name="cpf"
             value={values.cpf}
             label="CPF"
             type="text"
             onChange={handleChange}
-            error={showErrors ? errors.cpf : ''}
+            maxLength={14}
+            onKeyUp={mascaraCPF}
+            error={mostraErrors ? errors.cpf : ''}
           />
           <div className={styles.bgButton}>
             <Button type="submit">Entrar</Button>
           </div>
         </div>
       </form>
-
     </>
   );
 };

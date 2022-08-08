@@ -7,7 +7,7 @@ import {
   FaShoppingCart,
   FaBars
 } from 'react-icons/fa'
-import Logo from "../images/logo.jpeg"
+
 
 // Dependencias
 import { NavLink } from 'react-router-dom'
@@ -34,8 +34,8 @@ const SideBar = ({children}) => {
     <div className={styles.container}>
       <div style={{width: isOpen ? "250px" : "50px"}} className={styles.sidebar}>
         <div className={styles.topSection}>
-          <img src={Logo} alt="logo No Precinho" style={{display: isOpen ? "block" : "none"}}  className={styles.logo} />
-          <div style={{marginLeft: isOpen ? "50px" : "0px"}} className={styles.bars}>
+          {/* <img src={Logo} alt="logo No Precinho" style={{display: isOpen ? "block" : "none"}}  className={styles.logo} /> */}
+          <div className={styles.bars}>
             <FaBars onClick={toggle}/>
           </div>
         </div>
@@ -53,4 +53,4 @@ const SideBar = ({children}) => {
   )
 }
 
-export default SideBar
+export default SideBar;

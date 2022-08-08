@@ -1,0 +1,19 @@
+.h1 {
+    text-align: center;
+    color: red;
+    font-size: xx-large;
+    margin: 20px auto;
+}
+
+.ListTable {
+    Table {
+        display: flex;
+        flex-direction: column;
+
+        tr {
+            th {
+                color: red;
+            }
+        }
+    }
+}
