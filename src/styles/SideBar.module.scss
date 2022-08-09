@@ -25,10 +25,13 @@ main{
 .logo{
   width: 75%;
 }
+
 .bars{
   display: flex;
   font-size: 25px;
+  cursor: pointer;
 }
+
 .link{
   display: flex;
   color: white;
@@ -36,12 +39,14 @@ main{
   gap: 15px;
   transition: all 0.5s;
 }
+
 .link:hover{
   background: #ec755d;
   color: black;
   border-radius: 10px;
   transition: all 0.5s;
 }
+
 .active{
   background: #ec755d;
   color: black
