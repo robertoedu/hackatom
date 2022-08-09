@@ -34,6 +34,7 @@ export const Form = () => {
     e.preventDefault();
     let cpf = values.cpf;
     let email = values.email;
+    const regEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
     if (cpf.length < 11) {
       setMostraErrors(true);
@@ -42,7 +43,7 @@ export const Form = () => {
       /^\w + ([\.-]?\w+) * @\w+ ([\.-]?\w+) * (\.\w{2,3})+$/.test(email)
     ) {
       setMostraErrors(true);
-    } else {
+    } else if (regEmail.test(email) && cpf.length > 11) {
       login();
     }
     handleSubmit(e);
