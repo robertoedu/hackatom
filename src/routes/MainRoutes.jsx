@@ -21,8 +21,8 @@ export const MainRoutes = () => {
         {/* Rotas Privadas, Verificacao de Id, atravez de Local Storage, 
       Pagina visualizacao como lista de compras*/}
 
-        <Route exact path="/list/*" element={<PrivateRoute />}>
-          <Route exact path="/list/*" element={<Lista />} />
+        <Route exact path="/hackatom/list/*" element={<PrivateRoute />}>
+          <Route exact path="/hackatom/list/*" element={<Lista />} />
         </Route>
 
       </Routes>
